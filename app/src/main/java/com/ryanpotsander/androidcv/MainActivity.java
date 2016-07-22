@@ -350,6 +350,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             audioData = ShortBuffer.allocate(bufferSize * 10);
 
+
+
             while (recording){
 
                 int result = audioRecord.read(audioData.array(), 0, audioData.capacity());
@@ -357,16 +359,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("recording loop", "audioRecord.read" + result);
                 Log.d("recording loop", "timeStamp" + recorder.getTimestamp());
 
-                //audioData.limit(result);
+                audioData.limit(result);
 
+                try {
+                    recorder.recordSamples(audioData);
+                } catch (FrameRecorder.Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 
-            try {
-                recorder.recordSamples(audioData);
-            } catch (FrameRecorder.Exception e) {
-                e.printStackTrace();
-            }
+
 
             Log.v("AudioThread","AudioThread Finished, release audioRecord" + recorder.getTimestamp());
 

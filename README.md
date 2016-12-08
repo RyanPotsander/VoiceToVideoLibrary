@@ -1,5 +1,5 @@
-# AndroidCV
-Android library for producing a video from recorded audio and a single image.
+# VoiceToVideoLibrary
+Uses OpenCV/FFmpeg to combine voice recording and background image into a video. 
 
 
 
